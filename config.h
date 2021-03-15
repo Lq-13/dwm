@@ -88,7 +88,7 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80*24", NULL };
 static const char *trayercmd[] = {"home/coco/scripts/t-toggle.sh", NULL };
 static const char *wpcmd[] = { "/home/coco/scripts/wp-change.sh",NULL };
-//static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *chromecmd[]  = { "google-chrome-stable", "--proxy-server=127.0.0.1:8889",  NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 
 
@@ -100,7 +100,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = wpcmd } },
     { MODKEY,                       XK_g,      spawn,          {.v = browsercmd } },
-    { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD(TERMINAL " -e htop") },
+    { MODKEY,                       XK_c,      spawn,          {.v = chromecmd } },
+    { MODKEY|ShiftMask,		        XK_r,	   spawn,		   SHCMD(TERMINAL " -e htop") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_l,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_h,      focusstackvis,  {.i = -1 } },
