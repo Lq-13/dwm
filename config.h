@@ -1,4 +1,9 @@
 /* See LICENSE file for copyright and license details. */
+#include "gaplessgrid.c"
+
+/* Constants */
+#define TERMINAL "st"
+#define TERMCLASS "St"
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -59,6 +64,9 @@ static const Layout layouts[] = {
 	{ "Tile",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
+    { "###",      gaplessgrid}
 };
 
 /* key definitions */
@@ -92,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = wpcmd } },
     { MODKEY,                       XK_g,      spawn,          {.v = browsercmd } },
+    { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD(TERMINAL " -e htop") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_l,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_h,      focusstackvis,  {.i = -1 } },
@@ -109,6 +118,9 @@ static Key keys[] = {
     { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
     { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[1]} },
     { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
